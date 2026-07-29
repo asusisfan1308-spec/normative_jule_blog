@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="post-detail-container">
+    <h2>{{ post.title }}</h2>
+    <small>{{ post.created_at }}</small>
+    <p class="post-text">{{ post.content }}</p>
+
+    <hr class="post-divider">
+    <p class="likes-count">Likes: {{ post.like_set.count }}</p>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'like_toggle' post.pk %}" method="post" class="like-form">
+            {% csrf_token %}
+            <button type="submit" class="like-btn">
+                {% if liked %}❤️ Unlike{% else %}🤍 Like{% endif %}
+            </button>
+        </form>
+    {% endif %}
+</div>
+
+<style>
+    .post-detail-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .post-detail-container h2 {
+        color: #1e293b;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-size: 2.2rem;
+        border-left: 4px solid #2563eb;
+        padding-left: 12px;
+    }
+    .post-detail-container small {
+        color: #64748b;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+    .post-text {
+        color: #334155;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    .post-divider {
+        border: none;
+        height: 1px;
+        background-color: #cbd5e1;
+        margin: 20px 0;
+    }
+    .likes-count {
+        color: #334155;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .like-btn {
+        background: #ffffff;
+        color: #2563eb;
+        border: 1px solid #cbd5e1;
+        padding: 10px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .like-btn:hover {
+        background: #2563eb;
+        color: white;
+        border-color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="success-container">
+    <h2>Message Sent!</h2>
+    <p class="success-message">We will contact you soon.</p>
+    <a href="{% url 'post_list' %}" class="btn-home">Back to Home</a>
+</div>
+
+<style>
+    .success-container {
+        max-width: 600px;
+        margin: 40px auto;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        padding: 40px 30px;
+        border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    .success-container h2 {
+        color: #1e293b;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 2.2rem;
+    }
+    .success-message {
+        color: #334155;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .btn-home {
+        display: inline-block;
+        background: #2563eb;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+    .btn-home:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        color: white;
+    }
+</style>
+{% endblock %}

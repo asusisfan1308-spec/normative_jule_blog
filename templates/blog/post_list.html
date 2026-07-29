@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="posts-container">
+    <h2>Posts</h2>
+
+    <!-- Search -->
+    <form method="get" class="search-form">
+        <input type="text" name="q" value="{{ q }}" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if q %}
+        <p class="search-result">Found: {{ count }} results</p>
+    {% endif %}
+
+    <div class="posts-list">
+        {% for post in page_obj %}
+            <div class="post-card">
+                <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
+                <p>{{ post.content|truncatewords:20 }}</p>
+                <small>{{ post.created_at }}</small>
+            </div>
+        {% empty %}
+            <p class="no-results">No results found</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Next</a>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .posts-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .posts-container h2 {
+        color: #1e293b;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        border-left: 4px solid #2563eb;
+        padding-left: 12px;
+    }
+    .search-form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+    }
+    .search-form input {
+        flex: 1;
+        padding: 12px 16px;
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        color: #1e293b;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    .search-form input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .search-form button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .search-form button:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+    }
+    .search-result {
+        color: #64748b;
+        margin-bottom: 1rem;
+        font-weight: 500;
+    }
+    .post-card {
+        background: #ffffff;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        padding: 20px;
+        border-radius: 16px;
+        margin-top: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .post-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .post-card h3 a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .post-card h3 a:hover {
+        text-decoration: underline;
+    }
+    .post-card p {
+        color: #334155;
+        margin: 10px 0;
+    }
+    .post-card small {
+        color: #64748b;
+    }
+    .no-results {
+        color: #64748b;
+        text-align: center;
+        padding: 2rem;
+        font-weight: 500;
+    }
+    .pagination-container {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+    .pagination-container a {
+        background: #ffffff;
+        color: #2563eb;
+        border: 1px solid #cbd5e1;
+        padding: 8px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    .pagination-container a:hover {
+        background: #2563eb;
+        color: white;
+        border-color: #2563eb;
+    }
+    .pagination-container span {
+        color: #334155;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}

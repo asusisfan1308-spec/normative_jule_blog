@@ -1,0 +1,89 @@
+<!-- contact.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="contact-container">
+    <h2>Contact Us</h2>
+    <form method="post" class="contact-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+<style>
+    .contact-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .contact-container h2 {
+        color: #1e293b;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        border-left: 4px solid #2563eb;
+        padding-left: 12px;
+    }
+    .contact-form p {
+        margin-bottom: 1.25rem;
+    }
+    .contact-form label {
+        display: block;
+        color: #334155;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+        width: 100%;
+        padding: 12px 16px;
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        color: #1e293b;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .contact-form button[type="submit"] {
+        background: #2563eb;
+        color: #ffffff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+    .contact-form button[type="submit"]:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    }
+    .contact-form .helptext {
+        display: block;
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-top: 0.3rem;
+    }
+    .contact-form ul.errorlist {
+        list-style: none;
+        padding: 0;
+        color: #ef4444;
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+    }
+</style>
+{% endblock %}
