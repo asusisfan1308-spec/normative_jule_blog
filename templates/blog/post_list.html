@@ -1,156 +1,397 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="posts-container">
-    <h2>Posts</h2>
 
-    <!-- Search -->
+<div class="posts-container">
+
+    <div class="page-header">
+        <h2>📝 Blog Posts</h2>
+        <p>Discover interesting articles from our community.</p>
+    </div>
+
     <form method="get" class="search-form">
-        <input type="text" name="q" value="{{ q }}" placeholder="Search...">
-        <button type="submit">Search</button>
+        <input type="text" name="q" value="{{ q }}" placeholder="Search posts...">
+        <button type="submit">🔍 Search</button>
     </form>
 
     {% if q %}
-        <p class="search-result">Found: {{ count }} results</p>
+        <div class="search-result">
+            Found <strong>{{ count }}</strong> result{{ count|pluralize }}
+        </div>
     {% endif %}
 
-    <div class="posts-list">
+    <div class="posts-grid">
+
         {% for post in page_obj %}
-            <div class="post-card">
-                <h3><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
-                <p>{{ post.content|truncatewords:20 }}</p>
-                <small>{{ post.created_at }}</small>
+
+        <div class="post-card">
+
+            <div class="card-top">
+                <span class="date">{{ post.created_at }}</span>
             </div>
+
+            <h3>
+                <a href="{% url 'post_detail' post.pk %}">
+                    {{ post.title }}
+                </a>
+            </h3>
+
+            <p>
+                {{ post.content|truncatewords:25 }}
+            </p>
+
+            <a href="{% url 'post_detail' post.pk %}" class="read-more">
+                Read More →
+            </a>
+
+        </div>
+
         {% empty %}
-            <p class="no-results">No results found</p>
+
+        <div class="empty-card">
+            <h3>No posts found 😔</h3>
+            <p>Try another search.</p>
+        </div>
+
         {% endfor %}
+
     </div>
 
-    <!-- Pagination -->
-    <div class="pagination-container">
+    <div class="pagination">
+
         {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">Previous</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">
+            ← Previous
+        </a>
         {% endif %}
 
-        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        <span>
+            {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Next</a>
+        <a href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}">
+            Next →
+        </a>
         {% endif %}
+
     </div>
+
 </div>
 
 <style>
-    .posts-container {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-    .posts-container h2 {
-        color: #1e293b;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        font-size: 2rem;
-        border-left: 4px solid #2563eb;
-        padding-left: 12px;
-    }
-    .search-form {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 1.5rem;
-    }
-    .search-form input {
-        flex: 1;
-        padding: 12px 16px;
-        background-color: #ffffff;
-        border: 1px solid #cbd5e1;
-        border-radius: 12px;
-        color: #1e293b;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-    }
-    .search-form input:focus {
-        outline: none;
-        border-color: #2563eb;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
-    .search-form button {
-        background: #2563eb;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 12px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    .search-form button:hover {
-        background: #1d4ed8;
-        transform: translateY(-2px);
-    }
-    .search-result {
-        color: #64748b;
-        margin-bottom: 1rem;
-        font-weight: 500;
-    }
-    .post-card {
-        background: #ffffff;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        padding: 20px;
-        border-radius: 16px;
-        margin-top: 15px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .post-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-    .post-card h3 a {
-        color: #2563eb;
-        text-decoration: none;
-        font-weight: 600;
-    }
-    .post-card h3 a:hover {
-        text-decoration: underline;
-    }
-    .post-card p {
-        color: #334155;
-        margin: 10px 0;
-    }
-    .post-card small {
-        color: #64748b;
-    }
-    .no-results {
-        color: #64748b;
-        text-align: center;
-        padding: 2rem;
-        font-weight: 500;
-    }
-    .pagination-container {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-    }
-    .pagination-container a {
-        background: #ffffff;
-        color: #2563eb;
-        border: 1px solid #cbd5e1;
-        padding: 8px 16px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.2s ease;
-    }
-    .pagination-container a:hover {
-        background: #2563eb;
-        color: white;
-        border-color: #2563eb;
-    }
-    .pagination-container span {
-        color: #334155;
-        font-weight: 600;
-    }
+
+.posts-container{
+    max-width:1250px;
+    margin:auto;
+}
+
+.page-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.page-header h2{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    background:linear-gradient(135deg,#fff,#7dd3fc);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+.page-header p{
+
+    margin-top:10px;
+
+    color:rgba(255,255,255,.65);
+
+}
+
+.search-form{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+}
+
+.search-form input{
+
+    flex:1;
+
+    padding:16px 20px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+.search-form input::placeholder{
+    color:rgba(255,255,255,.45);
+}
+
+.search-form button{
+
+    padding:16px 28px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    color:white;
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+    transition:.35s;
+
+    box-shadow:0 15px 30px rgba(37,99,235,.35);
+
+}
+
+.search-form button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.45);
+
+}
+
+.search-result{
+
+    color:#9ecbff;
+
+    margin-bottom:25px;
+
+    font-weight:600;
+
+}
+
+.posts-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+.post-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    transition:.4s;
+
+    box-shadow:
+
+    0 20px 45px rgba(0,0,0,.30);
+
+}
+
+.post-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#60a5fa;
+
+    box-shadow:
+
+    0 35px 70px rgba(0,0,0,.40);
+
+}
+
+.date{
+
+    color:#7dd3fc;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.post-card h3{
+
+    margin:18px 0;
+
+}
+
+.post-card h3 a{
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.post-card h3 a:hover{
+
+    color:#60a5fa;
+
+}
+
+.post-card p{
+
+    color:rgba(255,255,255,.72);
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+.read-more{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:#7dd3fc;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.read-more:hover{
+
+    color:white;
+
+    transform:translateX(6px);
+
+}
+
+.empty-card{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding:70px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+}
+
+.empty-card h3{
+
+    color:white;
+
+}
+
+.empty-card p{
+
+    color:rgba(255,255,255,.6);
+
+}
+
+.pagination{
+
+    margin-top:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.pagination a{
+
+    text-decoration:none;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+.pagination a:hover{
+
+    background:#2563eb;
+
+    transform:translateY(-3px);
+
+}
+
+.pagination span{
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+@media(max-width:768px){
+
+.search-form{
+
+flex-direction:column;
+
+}
+
+.page-header h2{
+
+font-size:34px;
+
+}
+
+}
+
 </style>
+
 {% endblock %}

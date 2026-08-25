@@ -61,7 +61,7 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('post_list')
     else:
         form = UserCreationForm()
     return render(request, 'blog/register.html', {'form': form})
@@ -87,7 +87,7 @@ def contact_view(request):
             message = form.cleaned_data['message']
 
             send_mail(
-                f"Xabar {name} dan",
+                f"Message {name} dan",
                 message,
                 email,
                 ['admin@blog.uz'],

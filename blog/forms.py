@@ -9,6 +9,6 @@ class PostForm(forms.ModelForm):
 
 # День 12: Форма обратной связи
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100, label="Ism")
+    name = forms.CharField(max_length=100, label="Name")
     email = forms.EmailField(label="Email")
-    message = forms.CharField(widget=forms.Textarea, label="Xabar")
+    message = forms.CharField(widget=forms.Textarea, label="Message")

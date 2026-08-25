@@ -1,78 +1,303 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="post-detail-container">
-    <h2>{{ post.title }}</h2>
-    <small>{{ post.created_at }}</small>
-    <p class="post-text">{{ post.content }}</p>
 
-    <hr class="post-divider">
-    <p class="likes-count">Likes: {{ post.like_set.count }}</p>
+<div class="post-wrapper">
 
-    {% if user.is_authenticated %}
-        <form action="{% url 'like_toggle' post.pk %}" method="post" class="like-form">
-            {% csrf_token %}
-            <button type="submit" class="like-btn">
-                {% if liked %}❤️ Unlike{% else %}🤍 Like{% endif %}
-            </button>
-        </form>
-    {% endif %}
+    <div class="post-card">
+
+        <div class="post-header">
+
+            <span class="post-date">
+                📅 {{ post.created_at }}
+            </span>
+
+            <h1>
+                {{ post.title }}
+            </h1>
+
+        </div>
+
+        <div class="post-content">
+            {{ post.content|linebreaks }}
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="post-footer">
+
+            <div class="likes-box">
+
+                <span class="heart">❤️</span>
+
+                <span class="likes-number">
+                    {{ post.like_set.count }} Likes
+                </span>
+
+            </div>
+
+            {% if user.is_authenticated %}
+
+            <form action="{% url 'like_toggle' post.pk %}" method="post">
+
+                {% csrf_token %}
+
+                <button type="submit" class="like-btn">
+
+                    {% if liked %}
+                        ❤️ Unlike
+                    {% else %}
+                        🤍 Like
+                    {% endif %}
+
+                </button>
+
+            </form>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
 </div>
 
 <style>
-    .post-detail-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .post-detail-container h2 {
-        color: #1e293b;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        font-size: 2.2rem;
-        border-left: 4px solid #2563eb;
-        padding-left: 12px;
-    }
-    .post-detail-container small {
-        color: #64748b;
-        font-size: 0.9rem;
-        display: block;
-        margin-bottom: 1.5rem;
-    }
-    .post-text {
-        color: #334155;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-    }
-    .post-divider {
-        border: none;
-        height: 1px;
-        background-color: #cbd5e1;
-        margin: 20px 0;
-    }
-    .likes-count {
-        color: #334155;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-    .like-btn {
-        background: #ffffff;
-        color: #2563eb;
-        border: 1px solid #cbd5e1;
-        padding: 10px 20px;
-        border-radius: 12px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
-    .like-btn:hover {
-        background: #2563eb;
-        color: white;
-        border-color: #2563eb;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
-    }
+
+.post-wrapper{
+
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
+
+}
+
+.post-card{
+
+    width:100%;
+    max-width:900px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:30px;
+
+    padding:45px;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.15);
+
+    animation:showCard .7s ease;
+
+}
+
+@keyframes showCard{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+.post-header{
+
+    margin-bottom:35px;
+
+}
+
+.post-date{
+
+    display:inline-block;
+
+    color:#7dd3fc;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+
+    font-weight:600;
+
+}
+
+.post-header h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    line-height:1.3;
+
+    background:linear-gradient(135deg,#ffffff,#7dd3fc);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+.post-content{
+
+    color:rgba(255,255,255,.82);
+
+    font-size:18px;
+
+    line-height:2;
+
+    word-break:break-word;
+
+}
+
+.divider{
+
+    height:1px;
+
+    margin:40px 0;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+.post-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.likes-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 22px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.10);
+
+}
+
+.heart{
+
+    font-size:22px;
+
+}
+
+.likes-number{
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:17px;
+
+}
+
+.like-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:15px 28px;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:16px;
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+    transition:.35s;
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.35);
+
+}
+
+.like-btn:hover{
+
+    transform:
+    translateY(-4px)
+    scale(1.04);
+
+    box-shadow:
+    0 25px 50px rgba(37,99,235,.45);
+
+}
+
+@media(max-width:768px){
+
+.post-card{
+
+padding:28px;
+
+}
+
+.post-header h1{
+
+font-size:30px;
+
+}
+
+.post-content{
+
+font-size:16px;
+
+line-height:1.8;
+
+}
+
+.post-footer{
+
+flex-direction:column;
+align-items:stretch;
+
+}
+
+.like-btn{
+
+width:100%;
+
+}
+
+.likes-box{
+
+justify-content:center;
+
+}
+
+}
+
 </style>
+
 {% endblock %}
