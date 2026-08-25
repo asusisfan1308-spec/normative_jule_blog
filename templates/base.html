@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
 
+    {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Подключение твоего CSS файла -->
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -303,10 +306,10 @@
         {% endblock %}
     </div>
 
-    <!-- Новый крутой Footer -->
+    <!-- Footer -->
     <footer class="footer-custom">
         <div class="footer-text">
-            Blog project by Isfandiyor Abdullaev
+            Blog project by Isfandiyor A.
         </div>
     </footer>
 

@@ -1,0 +1,25 @@
+/* Адаптивность для мобильных телефонов (экраны уже 768 пикселей) */
+@media (max-width: 768px) {
+    /* Если меню закреплено или имеет фиксированное положение, убираем это на телефонах */
+    .navbar, .sidebar, header {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    /* Делаем основные блоки и карточки шире, чтобы они занимали весь экран */
+    .container, .glass-card, .card {
+        width: 95% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+    }
+
+    /* Уменьшаем слишком большие отступы сверху, чтобы контент не прятался под меню */
+    body {
+        padding-top: 10px !important;
+    }
+}
