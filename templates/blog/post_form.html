@@ -7,262 +7,554 @@
     <div class="create-card">
 
         <div class="create-header">
+
             <h2>✍️ Create New Post</h2>
-            <p>Share your ideas with everyone in a beautiful way.</p>
+
+            <p>
+                Share your ideas with everyone in a beautiful way.
+            </p>
+
         </div>
 
+
         <form method="post" class="create-form">
+
             {% csrf_token %}
+
             {{ form.as_p }}
+
 
             <button type="submit">
                 🚀 Publish Post
             </button>
+
         </form>
 
     </div>
 
 </div>
 
+
 <style>
 
-.create-wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:75vh;
-    padding:40px 20px;
+/* =====================================================
+   CREATE WRAPPER
+===================================================== */
+
+.create-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 75vh;
+
+    padding: 40px 20px;
+
 }
 
-.create-card{
 
-    width:100%;
-    max-width:800px;
+/* =====================================================
+   CREATE CARD
+===================================================== */
 
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
+.create-card {
 
-    border:1px solid rgba(255,255,255,.15);
+    width: 100%;
 
-    border-radius:30px;
+    max-width: 800px;
 
-    padding:45px;
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 105, 99, 0.32),
+            rgba(0, 55, 52, 0.58)
+        );
+
+    backdrop-filter: blur(28px);
+
+    -webkit-backdrop-filter: blur(28px);
+
+    border:
+        1px solid rgba(240, 237, 228, 0.13);
+
+    border-radius: 30px;
+
+    padding: 45px;
 
     box-shadow:
-    0 25px 60px rgba(0,0,0,.35),
-    inset 0 1px rgba(255,255,255,.20);
+        0 30px 70px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.08);
 
-    animation:showCard .8s ease;
+    animation:
+        showCard 0.8s ease;
+}
+
+
+/* =====================================================
+   DECORATIVE GLOW
+===================================================== */
+
+.create-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 300px;
+
+    top: -190px;
+
+    right: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 169, 160, 0.22),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
 
 }
 
-@keyframes showCard{
 
-from{
-opacity:0;
-transform:translateY(45px);
-}
+/* =====================================================
+   ANIMATION
+===================================================== */
 
-to{
-opacity:1;
-transform:translateY(0);
-}
+@keyframes showCard {
 
-}
+    from {
 
-.create-header{
+        opacity: 0;
 
-    text-align:center;
-    margin-bottom:35px;
+        transform:
+            translateY(45px);
 
-}
+    }
 
-.create-header h2{
+    to {
 
-    font-size:38px;
-    font-weight:800;
+        opacity: 1;
 
-    background:linear-gradient(135deg,#ffffff,#7dd3fc);
+        transform:
+            translateY(0);
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    margin-bottom:12px;
+    }
 
 }
 
-.create-header p{
 
-    color:rgba(255,255,255,.70);
-    font-size:15px;
+/* =====================================================
+   HEADER
+===================================================== */
+
+.create-header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.create-header h2 {
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #F0EDE4 20%,
+            #75DED8 100%
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
 
 }
 
-.create-form p{
 
-    margin-bottom:22px;
+.create-header p {
+
+    color:
+        rgba(240, 237, 228, 0.68);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.create-form p {
+
+    margin-bottom: 22px;
 
 }
 
-.create-form label{
 
-    display:block;
+/* =====================================================
+   LABELS
+===================================================== */
 
-    margin-bottom:8px;
+.create-form label {
 
-    color:white;
+    display: block;
 
-    font-size:15px;
+    margin-bottom: 8px;
 
-    font-weight:600;
+    color: #F0EDE4;
+
+    font-size: 15px;
+
+    font-weight: 600;
 
 }
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
 
 .create-form input,
 .create-form textarea,
-.create-form select{
+.create-form select {
 
-    width:100%;
+    width: 100%;
 
-    padding:15px 18px;
+    padding: 15px 18px;
 
-    background:rgba(255,255,255,.08);
+    background:
+        rgba(0, 30, 28, 0.42);
 
-    border:1px solid rgba(255,255,255,.15);
+    border:
+        1px solid rgba(240, 237, 228, 0.12);
 
-    border-radius:16px;
+    border-radius: 16px;
 
-    color:white;
+    color: #F0EDE4;
 
-    font-size:15px;
+    font-size: 15px;
 
-    transition:.35s;
+    transition:
+        all 0.3s ease;
 
-    outline:none;
+    outline: none;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.025);
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+.create-form textarea {
+
+    min-height: 180px;
+
+    resize: vertical;
 
 }
 
-.create-form textarea{
 
-    min-height:180px;
-    resize:vertical;
-
-}
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
 
 .create-form input::placeholder,
-.create-form textarea::placeholder{
+.create-form textarea::placeholder {
 
-    color:rgba(255,255,255,.45);
+    color:
+        rgba(240, 237, 228, 0.40);
 
 }
+
+
+/* =====================================================
+   INPUT FOCUS
+===================================================== */
 
 .create-form input:focus,
 .create-form textarea:focus,
-.create-form select:focus{
+.create-form select:focus {
 
-    border-color:#60a5fa;
+    border-color:
+        rgba(0, 169, 160, 0.65);
 
-    background:rgba(255,255,255,.12);
-
-    box-shadow:
-    0 0 25px rgba(96,165,250,.35);
-
-}
-
-.create-form button{
-
-    width:100%;
-
-    margin-top:20px;
-
-    padding:17px;
-
-    border:none;
-
-    border-radius:18px;
-
-    background:linear-gradient(135deg,#2563eb,#60a5fa);
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.35s;
+    background:
+        rgba(0, 105, 99, 0.18);
 
     box-shadow:
-    0 15px 35px rgba(37,99,235,.35);
-
-}
-
-.create-form button:hover{
+        0 0 0 3px rgba(0, 169, 160, 0.08),
+        0 0 25px rgba(0, 169, 160, 0.14);
 
     transform:
-    translateY(-5px)
-    scale(1.02);
+        translateY(-1px);
+
+}
+
+
+/* =====================================================
+   SELECT OPTIONS
+===================================================== */
+
+.create-form select option {
+
+    background: #004743;
+
+    color: #F0EDE4;
+
+}
+
+
+/* =====================================================
+   PUBLISH BUTTON
+===================================================== */
+
+.create-form button {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 17px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #006963,
+            #00A9A0
+        );
+
+    color: #F0EDE4;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        all 0.35s ease;
+
+    border:
+        1px solid rgba(240, 237, 228, 0.10);
 
     box-shadow:
-    0 25px 45px rgba(37,99,235,.45);
+        0 15px 35px rgba(0, 0, 0, 0.25);
 
 }
 
-.create-form .helptext{
 
-    display:block;
+/* =====================================================
+   BUTTON HOVER
+===================================================== */
 
-    margin-top:8px;
+.create-form button:hover {
 
-    color:rgba(255,255,255,.55);
+    transform:
+        translateY(-5px)
+        scale(1.02);
 
-    font-size:13px;
+    background:
+        linear-gradient(
+            135deg,
+            #008C84,
+            #00BDB3
+        );
 
-}
-
-.create-form ul{
-
-    list-style:none;
-
-    padding-left:0;
-
-    margin-top:8px;
-
-}
-
-.create-form li{
-
-    color:#ff7d7d;
-
-    font-size:13px;
-
-    margin-bottom:5px;
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(0, 169, 160, 0.16);
 
 }
 
-.create-form input[type="checkbox"]{
 
-    width:auto;
+/* =====================================================
+   BUTTON ACTIVE
+===================================================== */
 
-    margin-right:8px;
+.create-form button:active {
 
-}
-
-@media(max-width:768px){
-
-.create-card{
-
-padding:30px 22px;
+    transform:
+        translateY(-1px)
+        scale(0.99);
 
 }
 
-.create-header h2{
 
-font-size:30px;
+/* =====================================================
+   HELP TEXT
+===================================================== */
+
+.create-form .helptext {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color:
+        rgba(240, 237, 228, 0.50);
+
+    font-size: 13px;
+
+    line-height: 1.5;
 
 }
+
+
+/* =====================================================
+   FORM ERRORS
+===================================================== */
+
+.create-form ul {
+
+    list-style: none;
+
+    padding-left: 0;
+
+    margin-top: 8px;
+
+}
+
+
+.create-form li {
+
+    color: #FF9B9B;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.create-form input[type="checkbox"] {
+
+    width: auto;
+
+    margin-right: 8px;
+
+    accent-color: #00A9A0;
+
+}
+
+
+/* =====================================================
+   FILE INPUT
+===================================================== */
+
+.create-form input[type="file"] {
+
+    padding: 12px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .create-wrapper {
+
+        min-height: auto;
+
+        padding:
+            25px 12px 40px;
+
+    }
+
+
+    .create-card {
+
+        padding: 30px 22px;
+
+        border-radius: 24px;
+
+    }
+
+
+    .create-header h2 {
+
+        font-size: 30px;
+
+    }
+
+
+    .create-header p {
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .create-card {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .create-header h2 {
+
+        font-size: 26px;
+
+    }
+
+
+    .create-form input,
+    .create-form textarea,
+    .create-form select {
+
+        padding:
+            13px 15px;
+
+    }
 
 }
 

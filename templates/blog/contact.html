@@ -7,262 +7,490 @@
     <div class="contact-card">
 
         <div class="contact-header">
+
             <h2>📩 Contact Us</h2>
-            <p>Have a question or suggestion? We'd love to hear from you.</p>
+
+            <p>
+                Have a question or suggestion? We'd love to hear from you.
+            </p>
+
         </div>
 
+
         <form method="post" class="contact-form">
+
             {% csrf_token %}
+
             {{ form.as_p }}
+
 
             <button type="submit">
                 🚀 Send Message
             </button>
+
         </form>
 
     </div>
 
 </div>
 
+
 <style>
 
-.contact-wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:75vh;
-    padding:40px 20px;
+/* =====================================================
+   CONTACT WRAPPER
+===================================================== */
+
+.contact-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 75vh;
+
+    padding: 40px 20px;
+
 }
 
-.contact-card{
 
-    width:100%;
-    max-width:760px;
+/* =====================================================
+   CONTACT CARD
+===================================================== */
 
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
+.contact-card {
 
-    border:1px solid rgba(255,255,255,.15);
+    width: 100%;
 
-    border-radius:30px;
+    max-width: 760px;
 
-    padding:45px;
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 105, 99, 0.32),
+            rgba(0, 55, 52, 0.62)
+        );
+
+    backdrop-filter: blur(28px);
+
+    -webkit-backdrop-filter: blur(28px);
+
+    border:
+        1px solid rgba(240, 237, 228, 0.13);
+
+    border-radius: 30px;
+
+    padding: 45px;
 
     box-shadow:
-    0 25px 60px rgba(0,0,0,.35),
-    inset 0 1px rgba(255,255,255,.20);
+        0 30px 70px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.08);
 
-    animation:fadeUp .8s ease;
-
-}
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
+    animation: fadeUp .8s ease;
 
 }
 
-.contact-header{
 
-    text-align:center;
-    margin-bottom:35px;
+/* =====================================================
+   CARD LIGHT
+===================================================== */
+
+.contact-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+
+    height: 320px;
+
+    top: -190px;
+
+    right: -110px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 169, 160, 0.22),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
 
 }
 
-.contact-header h2{
 
-    font-size:38px;
-    font-weight:800;
+/* =====================================================
+   HEADER
+===================================================== */
 
-    background:linear-gradient(135deg,#ffffff,#7dd3fc);
+.contact-header {
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    text-align: center;
 
-    margin-bottom:10px;
-
-}
-
-.contact-header p{
-
-    color:rgba(255,255,255,.70);
-    font-size:15px;
+    margin-bottom: 35px;
 
 }
 
-.contact-form p{
 
-    margin-bottom:22px;
+.contact-header h2 {
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+    color: #FFFFFF;
+
+    margin-bottom: 10px;
+
+}
+
+
+.contact-header p {
+
+    color:
+        rgba(240, 237, 228, 0.68);
+
+    font-size: 15px;
+
+    line-height: 1.6;
 
 }
 
-.contact-form label{
 
-    display:block;
+/* =====================================================
+   FORM
+===================================================== */
 
-    margin-bottom:8px;
+.contact-form p {
 
-    color:white;
-
-    font-size:15px;
-
-    font-weight:600;
+    margin-bottom: 22px;
 
 }
+
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.contact-form label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #F0EDE4;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   INPUT / TEXTAREA / SELECT
+===================================================== */
 
 .contact-form input,
 .contact-form textarea,
-.contact-form select{
+.contact-form select {
 
-    width:100%;
+    width: 100%;
 
-    padding:15px 18px;
+    padding: 15px 18px;
 
-    background:rgba(255,255,255,.08);
+    background:
+        rgba(0, 30, 28, 0.42);
 
-    border:1px solid rgba(255,255,255,.15);
+    border:
+        1px solid rgba(240, 237, 228, 0.13);
 
-    border-radius:16px;
+    border-radius: 16px;
 
-    color:white;
+    color: #F0EDE4;
 
-    font-size:15px;
+    font-size: 15px;
 
-    transition:.35s;
+    transition: all .35s ease;
 
-    outline:none;
+    outline: none;
+
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+.contact-form textarea {
+
+    min-height: 180px;
+
+    resize: vertical;
 
 }
 
-.contact-form textarea{
 
-    min-height:180px;
-    resize:vertical;
-
-}
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
 
 .contact-form input::placeholder,
-.contact-form textarea::placeholder{
+.contact-form textarea::placeholder {
 
-    color:rgba(255,255,255,.45);
+    color:
+        rgba(240, 237, 228, 0.40);
 
 }
+
+
+/* =====================================================
+   FOCUS
+===================================================== */
 
 .contact-form input:focus,
 .contact-form textarea:focus,
-.contact-form select:focus{
+.contact-form select:focus {
 
-    border-color:#60a5fa;
+    border-color:
+        rgba(0, 169, 160, 0.65);
 
-    background:rgba(255,255,255,.12);
+    background:
+        rgba(0, 105, 99, 0.18);
 
     box-shadow:
-    0 0 25px rgba(96,165,250,.35);
+        0 0 0 3px rgba(0, 169, 160, 0.08),
+        0 0 25px rgba(0, 169, 160, 0.14);
 
 }
 
-.contact-form button{
 
-    width:100%;
+/* =====================================================
+   SEND BUTTON
+===================================================== */
 
-    margin-top:18px;
+.contact-form button {
 
-    padding:17px;
+    width: 100%;
 
-    border:none;
+    margin-top: 18px;
 
-    border-radius:18px;
+    padding: 17px;
 
-    cursor:pointer;
+    border: none;
 
-    font-size:17px;
+    border-radius: 18px;
 
-    font-weight:700;
+    cursor: pointer;
 
-    color:white;
+    font-size: 17px;
 
-    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    font-weight: 700;
 
-    transition:.35s;
+    color: #F0EDE4;
+
+    background:
+        linear-gradient(
+            135deg,
+            #006963,
+            #00A9A0
+        );
+
+    transition: all .35s ease;
+
+    border:
+        1px solid rgba(240, 237, 228, 0.10);
 
     box-shadow:
-    0 15px 35px rgba(37,99,235,.35);
+        0 15px 35px rgba(0, 0, 0, 0.25);
 
 }
 
-.contact-form button:hover{
+
+/* =====================================================
+   BUTTON HOVER
+===================================================== */
+
+.contact-form button:hover {
 
     transform:
-    translateY(-5px)
-    scale(1.02);
+        translateY(-5px)
+        scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            #008C84,
+            #00BDB3
+        );
 
     box-shadow:
-    0 25px 45px rgba(37,99,235,.45);
+        0 22px 45px rgba(0, 0, 0, 0.30),
+        0 0 25px rgba(0, 169, 160, 0.15);
 
 }
 
-.contact-form .helptext{
 
-    display:block;
+/* =====================================================
+   HELP TEXT
+===================================================== */
 
-    margin-top:8px;
+.contact-form .helptext {
 
-    color:rgba(255,255,255,.55);
+    display: block;
 
-    font-size:13px;
+    margin-top: 8px;
 
-}
+    color:
+        rgba(240, 237, 228, 0.50);
 
-.contact-form ul{
+    font-size: 13px;
 
-    list-style:none;
-
-    padding-left:0;
-
-    margin-top:8px;
+    line-height: 1.5;
 
 }
 
-.contact-form li{
 
-    color:#ff8080;
+/* =====================================================
+   ERRORS
+===================================================== */
 
-    font-size:13px;
+.contact-form ul {
 
-    margin-bottom:5px;
+    list-style: none;
 
-}
+    padding-left: 0;
 
-.contact-form input[type="checkbox"]{
-
-    width:auto;
-
-    margin-right:8px;
+    margin-top: 8px;
 
 }
 
-@media(max-width:768px){
 
-.contact-card{
+.contact-form li {
 
-padding:30px 22px;
+    color: #FF9B9B;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.contact-form input[type="checkbox"] {
+
+    width: auto;
+
+    margin-right: 8px;
+
+    accent-color: #00A9A0;
 
 }
 
-.contact-header h2{
 
-font-size:30px;
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .contact-wrapper {
+
+        min-height: auto;
+
+        padding:
+            30px 15px 40px;
+
+    }
+
+
+    .contact-card {
+
+        padding: 30px 22px;
+
+        border-radius: 24px;
+
+    }
+
+
+    .contact-header h2 {
+
+        font-size: 30px;
+
+    }
 
 }
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .contact-card {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .contact-header h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+
+        padding:
+            13px 15px;
+
+    }
 
 }
 

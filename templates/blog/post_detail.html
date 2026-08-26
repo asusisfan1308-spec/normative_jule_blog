@@ -18,11 +18,14 @@
 
         </div>
 
+
         <div class="post-content">
             {{ post.content|linebreaks }}
         </div>
 
+
         <div class="divider"></div>
+
 
         <div class="post-footer">
 
@@ -36,13 +39,20 @@
 
             </div>
 
+
             {% if user.is_authenticated %}
 
-            <form action="{% url 'like_toggle' post.pk %}" method="post">
+            <form
+                action="{% url 'like_toggle' post.pk %}"
+                method="post"
+            >
 
                 {% csrf_token %}
 
-                <button type="submit" class="like-btn">
+                <button
+                    type="submit"
+                    class="like-btn"
+                >
 
                     {% if liked %}
                         ❤️ Unlike
@@ -62,239 +72,491 @@
 
 </div>
 
+
 <style>
 
-.post-wrapper{
+/* =====================================================
+   POST WRAPPER
+===================================================== */
 
-    display:flex;
-    justify-content:center;
-    padding:40px 20px;
+.post-wrapper {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 40px 20px 60px;
 
 }
 
-.post-card{
 
-    width:100%;
-    max-width:900px;
+/* =====================================================
+   POST CARD
+===================================================== */
 
-    background:rgba(255,255,255,.08);
+.post-card {
 
-    backdrop-filter:blur(22px);
-    -webkit-backdrop-filter:blur(22px);
+    width: 100%;
 
-    border:1px solid rgba(255,255,255,.12);
+    max-width: 900px;
 
-    border-radius:30px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 105, 99, 0.28),
+            rgba(0, 55, 52, 0.55)
+        );
 
-    padding:45px;
+    backdrop-filter: blur(28px);
+
+    -webkit-backdrop-filter: blur(28px);
+
+    border:
+        1px solid rgba(240, 237, 228, 0.13);
+
+    border-radius: 30px;
+
+    padding: 48px;
 
     box-shadow:
-    0 25px 60px rgba(0,0,0,.35),
-    inset 0 1px rgba(255,255,255,.15);
+        0 30px 70px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.07);
 
-    animation:showCard .7s ease;
+    position: relative;
+
+    overflow: hidden;
+
+    animation:
+        showCard 0.7s ease;
+}
+
+
+/* =====================================================
+   CARD GLOW
+===================================================== */
+
+.post-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    top: -180px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 169, 160, 0.20),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes showCard {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
 
 }
 
-@keyframes showCard{
 
-from{
+/* =====================================================
+   POST HEADER
+===================================================== */
 
-opacity:0;
-transform:translateY(40px);
+.post-header {
 
-}
-
-to{
-
-opacity:1;
-transform:translateY(0);
+    margin-bottom: 35px;
 
 }
 
-}
 
-.post-header{
+/* =====================================================
+   DATE
+===================================================== */
 
-    margin-bottom:35px;
+.post-date {
 
-}
+    display: inline-flex;
 
-.post-date{
+    align-items: center;
 
-    display:inline-block;
+    color: #62D8D2;
 
-    color:#7dd3fc;
+    font-size: 14px;
 
-    font-size:14px;
+    margin-bottom: 20px;
 
-    margin-bottom:18px;
+    font-weight: 600;
 
-    font-weight:600;
+    padding: 8px 14px;
 
-}
+    border-radius: 10px;
 
-.post-header h1{
+    background:
+        rgba(0, 169, 160, 0.08);
 
-    font-size:42px;
-
-    font-weight:800;
-
-    line-height:1.3;
-
-    background:linear-gradient(135deg,#ffffff,#7dd3fc);
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    border:
+        1px solid rgba(0, 169, 160, 0.12);
 
 }
 
-.post-content{
 
-    color:rgba(255,255,255,.82);
+/* =====================================================
+   TITLE
+===================================================== */
 
-    font-size:18px;
+.post-header h1 {
 
-    line-height:2;
+    font-size: 42px;
 
-    word-break:break-word;
+    font-weight: 800;
 
-}
+    line-height: 1.25;
 
-.divider{
+    color: #ffffff;
 
-    height:1px;
-
-    margin:40px 0;
-
-    background:rgba(255,255,255,.12);
+    letter-spacing: -0.8px;
 
 }
 
-.post-footer{
 
-    display:flex;
+/* =====================================================
+   POST CONTENT
+===================================================== */
 
-    justify-content:space-between;
+.post-content {
 
-    align-items:center;
+    color:
+        rgba(240, 237, 228, 0.82);
 
-    gap:20px;
+    font-size: 18px;
 
-    flex-wrap:wrap;
+    line-height: 2;
 
-}
-
-.likes-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:14px 22px;
-
-    border-radius:16px;
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.10);
+    word-break: break-word;
 
 }
 
-.heart{
 
-    font-size:22px;
+/* Paragraphs created by linebreaks */
 
-}
+.post-content p {
 
-.likes-number{
-
-    color:white;
-
-    font-weight:700;
-
-    font-size:17px;
+    margin-bottom: 18px;
 
 }
 
-.like-btn{
 
-    border:none;
+/* =====================================================
+   DIVIDER
+===================================================== */
 
-    cursor:pointer;
+.divider {
 
-    padding:15px 28px;
+    height: 1px;
 
-    border-radius:18px;
+    margin: 40px 0;
 
-    color:white;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 169, 160, 0.35),
+            rgba(240, 237, 228, 0.12),
+            transparent
+        );
 
-    font-weight:700;
+}
 
-    font-size:16px;
 
-    background:linear-gradient(135deg,#2563eb,#60a5fa);
+/* =====================================================
+   POST FOOTER
+===================================================== */
 
-    transition:.35s;
+.post-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+
+/* =====================================================
+   LIKES BOX
+===================================================== */
+
+.likes-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 22px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid rgba(240, 237, 228, 0.10);
 
     box-shadow:
-    0 15px 35px rgba(37,99,235,.35);
+        0 10px 25px rgba(0, 0, 0, 0.15);
+
+    transition: 0.3s ease;
 
 }
 
-.like-btn:hover{
+
+.likes-box:hover {
+
+    background:
+        rgba(0, 169, 160, 0.08);
+
+    border-color:
+        rgba(0, 169, 160, 0.20);
 
     transform:
-    translateY(-4px)
-    scale(1.04);
+        translateY(-2px);
+
+}
+
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.heart {
+
+    font-size: 22px;
+
+}
+
+
+/* =====================================================
+   LIKES NUMBER
+===================================================== */
+
+.likes-number {
+
+    color: #F0EDE4;
+
+    font-weight: 700;
+
+    font-size: 17px;
+
+}
+
+
+/* =====================================================
+   LIKE BUTTON
+===================================================== */
+
+.like-btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 15px 28px;
+
+    border-radius: 16px;
+
+    color: #F0EDE4;
+
+    font-weight: 700;
+
+    font-size: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #006963,
+            #00A9A0
+        );
+
+    transition:
+        all 0.35s ease;
+
+    border:
+        1px solid rgba(240, 237, 228, 0.10);
 
     box-shadow:
-    0 25px 50px rgba(37,99,235,.45);
+        0 15px 35px rgba(0, 0, 0, 0.25);
 
 }
 
-@media(max-width:768px){
 
-.post-card{
+/* =====================================================
+   LIKE BUTTON HOVER
+===================================================== */
 
-padding:28px;
+.like-btn:hover {
 
-}
+    transform:
+        translateY(-4px)
+        scale(1.03);
 
-.post-header h1{
+    background:
+        linear-gradient(
+            135deg,
+            #008C84,
+            #00BDB3
+        );
 
-font-size:30px;
-
-}
-
-.post-content{
-
-font-size:16px;
-
-line-height:1.8;
-
-}
-
-.post-footer{
-
-flex-direction:column;
-align-items:stretch;
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(0, 169, 160, 0.15);
 
 }
 
-.like-btn{
 
-width:100%;
+/* =====================================================
+   LIKE BUTTON ACTIVE
+===================================================== */
+
+.like-btn:active {
+
+    transform:
+        translateY(-1px)
+        scale(0.98);
 
 }
 
-.likes-box{
 
-justify-content:center;
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .post-wrapper {
+
+        padding:
+            25px 12px 40px;
+
+    }
+
+
+    .post-card {
+
+        padding: 28px;
+
+        border-radius: 24px;
+
+    }
+
+
+    .post-header h1 {
+
+        font-size: 30px;
+
+        line-height: 1.3;
+
+    }
+
+
+    .post-content {
+
+        font-size: 16px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .post-footer {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .like-btn {
+
+        width: 100%;
+
+    }
+
+
+    .likes-box {
+
+        justify-content: center;
+
+    }
 
 }
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .post-card {
+
+        padding: 22px;
+
+    }
+
+
+    .post-header h1 {
+
+        font-size: 26px;
+
+    }
+
+
+    .post-date {
+
+        font-size: 13px;
+
+    }
 
 }
 
