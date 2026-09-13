@@ -80,6 +80,7 @@ def like_toggle(request, pk):
 
 # День 12: Отправка письма
 
+
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -91,11 +92,16 @@ def contact_view(request):
 
             send_mail(
                 subject=f'Message from {name}',
-                message=f'Name: {name}\nEmail: {email}\n\nMessage:\n{message}',
+                message=f'''
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+''',
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.EMAIL_HOST_USER],
                 fail_silently=False,
-                reply_to=[email],
             )
 
             return render(request, 'blog/contact_success.html')
@@ -108,7 +114,6 @@ def contact_view(request):
         'blog/contact.html',
         {'form': form}
     )
-
 
 from django.shortcuts import render
 
