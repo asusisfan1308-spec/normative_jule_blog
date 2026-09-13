@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from .models import Post, Like
 from .forms import PostForm, ContactForm
+from django.conf import settings
 
 
 # День 1, 6, 7, 8, 9: Вывод, поиск и пагинация
@@ -78,25 +79,35 @@ def like_toggle(request, pk):
 
 
 # День 12: Отправка письма
+
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
+
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
             send_mail(
-                f"Message {name} dan",
-                message,
-                email,
-                ['admin@blog.uz'],
+                subject=f'Message from {name}',
+                message=f'Name: {name}\nEmail: {email}\n\nMessage:\n{message}',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.EMAIL_HOST_USER],
                 fail_silently=False,
+                reply_to=[email],
             )
+
             return render(request, 'blog/contact_success.html')
+
     else:
         form = ContactForm()
-    return render(request, 'blog/contact.html', {'form': form})
+
+    return render(
+        request,
+        'blog/contact.html',
+        {'form': form}
+    )
 
 
 from django.shortcuts import render
