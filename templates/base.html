@@ -67,10 +67,13 @@
            BODY
         ===================================================== */
 
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             min-height: 100vh;
-
-            overflow-x: hidden;
 
             color: var(--cream);
 
@@ -233,10 +236,7 @@
 
             text-decoration: none;
 
-
-
             color: #FFFFFF;
-
 
             transition: 0.35s ease;
         }
@@ -244,6 +244,36 @@
 
         .logo:hover {
             transform: scale(1.06);
+        }
+
+
+        /* =====================================================
+           MOBILE MENU TOGGLE
+        ===================================================== */
+
+        .menu-toggle {
+            display: none;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(240, 237, 228, 0.15);
+
+            color: var(--cream);
+
+            font-size: 22px;
+
+            padding: 8px 14px;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(0, 169, 160, 0.2);
+            color: #FFFFFF;
         }
 
 
@@ -339,6 +369,10 @@
         /* =====================================================
            LOGOUT
         ===================================================== */
+
+        .logout-form {
+            display: inline-block;
+        }
 
         .logout-btn {
             border: none;
@@ -506,62 +540,87 @@
 
 
         /* =====================================================
-           RESPONSIVE
+           RESPONSIVE (MOBILE & TABLET OPTIMIZATIONS)
         ===================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
+
+            .navbar-custom {
+                top: 10px;
+                width: 94%;
+                border-radius: 20px;
+            }
 
             .navbar-container {
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                gap: 20px;
+                padding: 14px 20px;
             }
-
-
-            .nav-links {
-                width: 100%;
-            }
-
-
-            .content {
-                padding: 28px;
-            }
-        }
-
-
-        @media (max-width: 600px) {
 
             .logo {
-                font-size: 28px;
+                font-size: 26px;
             }
 
+            /* Включаем кнопку гамбургера */
+            .menu-toggle {
+                display: block;
+            }
 
+            /* Скрываем ссылки по умолчанию и делаем выпадающее стеклянное меню */
             .nav-links {
-                display: grid;
-
-                grid-template-columns: 1fr;
-
+                display: none;
                 width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid rgba(240, 237, 228, 0.12);
             }
 
+            /* Класс для открытия меню через JS */
+            .nav-links.active {
+                display: flex;
+            }
 
             .nav-links a,
             .username,
             .logout-btn {
                 width: 100%;
-
                 text-align: center;
+                padding: 12px;
+                font-size: 15px;
             }
 
+            .logout-form {
+                width: 100%;
+            }
 
             .content {
                 width: 94%;
+                padding: 24px 18px;
+                margin: 25px auto;
+                border-radius: 22px;
+            }
 
-                padding: 20px;
+            .footer-custom {
+                width: 94%;
+                padding: 16px;
+                border-radius: 18px;
+            }
 
-                margin-top: 35px;
+            .footer-text {
+                font-size: 14px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 18px 14px;
             }
         }
 
@@ -588,8 +647,13 @@
                 Blog
             </a>
 
+            <!-- Mobile Hamburger Toggle Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+                ☰
+            </button>
 
-            <div class="nav-links">
+
+            <div class="nav-links" id="navLinks">
 
                 <a href="{% url 'post_list' %}">
                     🏠 Home
@@ -616,7 +680,7 @@
                     <form
                         action="{% url 'logout' %}"
                         method="post"
-                        style="display:inline;"
+                        class="logout-form"
                     >
 
                         {% csrf_token %}
@@ -675,6 +739,22 @@
 
     </footer>
 
+
+    <!-- =====================================================
+         MOBILE MENU SCRIPT
+    ===================================================== -->
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+        }
+    </script>
 
 </body>
 
