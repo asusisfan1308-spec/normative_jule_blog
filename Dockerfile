@@ -1,44 +1,28 @@
-From python:3.14-slim
-
-
+FROM python:3.14-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    PIP_ROOT_USER_ACTION=ignor
+    PIP_ROOT_USER_ACTION=ignore
 
 WORKDIR /app
-
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-
-COPY . .
-
-
+COPY deploy .
 
 RUN useradd --uid 1000 --create-home app \
     && mkdir -p /app/staticfiles /app/media \
     && chown -R app:app /app/staticfiles /app/media \
+    && sed -i 's/\r$//' /app/entrypoint.sh \
     && chmod +x /app/entrypoint.sh
-
-
-
 
 USER app
 
-
-
 EXPOSE 8000
-
-
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 
-
-
-
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--timeout", "120", "--max-requests", "500", "--max-requests-jitter", "50", "--access-logfile", "-", "--error-logfile", "-"]
-

@@ -1,0 +1,9 @@
+.venv
+.idea
+.git
+.env
+__pycache__
+*.pyc
+../nginx
+docker.compose.yaml
+compose.yaml
