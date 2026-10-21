@@ -18,12 +18,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
+from config.settings import SECRET_KEY
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ix!hovd3gx_ek3xwp9^0)gu&q_f6*##4upo_yj(ymtl5)+nl8l'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['isfandiyorabdullaev-blog.onrender.com', 'localhost', '127.0.0.1']
 # Application definition
@@ -69,12 +69,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "normative_jule_blog",
+        "USER": "postgres",
+        "PASSWORD": "isfan_1308",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 

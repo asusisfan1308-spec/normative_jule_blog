@@ -1,0 +1,227 @@
+[
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "title": "Django bilan tanishuv",
+      "content": "Django — Python asosida web ilovalar yaratish uchun qulay framework.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "title": "Python nima?",
+      "content": "Python sodda sintaksisga ega va ko‘plab sohalarda ishlatiladigan dasturlash tili.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "title": "Birinchi web loyiha",
+      "content": "Kichik loyihadan boshlash orqali web dasturlash asoslarini yaxshiroq tushunish mumkin.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 4,
+    "fields": {
+      "title": "Django modellari",
+      "content": "Model ma’lumotlar bazasidagi jadval tuzilishini Python klassi orqali ifodalaydi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 5,
+    "fields": {
+      "title": "Ma’lumotlar bazasi",
+      "content": "Ma’lumotlar bazasi ilovadagi yozuvlarni tartibli saqlashga yordam beradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 6,
+    "fields": {
+      "title": "Django admin paneli",
+      "content": "Admin panel orqali ma’lumotlarni brauzerda boshqarish mumkin.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 7,
+    "fields": {
+      "title": "URL va views",
+      "content": "URL so‘rovni kerakli view funksiyasi yoki klassiga yo‘naltiradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 8,
+    "fields": {
+      "title": "Template bilan ishlash",
+      "content": "Template HTML sahifalarini dinamik ma’lumotlar bilan ko‘rsatishga yordam beradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 9,
+    "fields": {
+      "title": "Post yaratish",
+      "content": "Foydalanuvchilar post yaratishi uchun forma va tegishli view yoziladi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 10,
+    "fields": {
+      "title": "Postlarni ko‘rsatish",
+      "content": "Postlar ro‘yxatini template ichida sikl yordamida chiqarish mumkin.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 11,
+    "fields": {
+      "title": "Post tafsilotlari",
+      "content": "Har bir post uchun alohida sahifa yaratib, uning to‘liq matnini ko‘rsatish mumkin.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 12,
+    "fields": {
+      "title": "CRUD amallari",
+      "content": "CRUD yaratish, o‘qish, yangilash va o‘chirish amallarini anglatadi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 13,
+    "fields": {
+      "title": "ModelForm",
+      "content": "ModelForm model maydonlari asosida forma yaratishni osonlashtiradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 14,
+    "fields": {
+      "title": "Validatsiya",
+      "content": "Validatsiya foydalanuvchi kiritgan ma’lumotlarning to‘g‘riligini tekshiradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 15,
+    "fields": {
+      "title": "Foydalanuvchi autentifikatsiyasi",
+      "content": "Autentifikatsiya foydalanuvchining tizimga kirganini tekshirishga xizmat qiladi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 16,
+    "fields": {
+      "title": "Like funksiyasi",
+      "content": "Like funksiyasi foydalanuvchiga postni yoqtirganini belgilash imkonini beradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 17,
+    "fields": {
+      "title": "ForeignKey aloqasi",
+      "content": "ForeignKey bir model yozuvini boshqa model yozuvi bilan bog‘laydi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 18,
+    "fields": {
+      "title": "Unique constraint",
+      "content": "Unique constraint bir xil ma’lumotning takroriy kiritilishini cheklaydi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 19,
+    "fields": {
+      "title": "Django migratsiyalari",
+      "content": "Migratsiyalar modeldagi o‘zgarishlarni ma’lumotlar bazasiga qo‘llaydi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 20,
+    "fields": {
+      "title": "JSON fixture",
+      "content": "JSON fixture boshlang‘ich ma’lumotlarni loyihaga yuklash uchun ishlatiladi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 21,
+    "fields": {
+      "title": "loaddata buyrug‘i",
+      "content": "manage.py loaddata buyrug‘i fixture ichidagi ma’lumotlarni bazaga yuklaydi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 22,
+    "fields": {
+      "title": "Git bilan ishlash",
+      "content": "Git loyiha tarixini saqlash va o‘zgarishlarni kuzatishga yordam beradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 23,
+    "fields": {
+      "title": "Serverga joylash",
+      "content": "Django loyihasini serverga joylashda sozlamalar va xavfsizlikni tekshirish muhim.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 24,
+    "fields": {
+      "title": "Environment variables",
+      "content": "Muhim sozlamalarni environment variables orqali saqlash xavfsizroq bo‘lishi mumkin.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 25,
+    "fields": {
+      "title": "Kod yozish odatlari",
+      "content": "Kodni kichik qismlarga ajratish uni o‘qish va qo‘llab-quvvatlashni osonlashtiradi.",
+      "created_at": "2026-10-21T12:00:00Z"
+    }
+  }
+]
